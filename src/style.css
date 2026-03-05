@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+@theme {
+  --color-black: #1c1311;
+  --color-brown: #7b4125;
+  --color-light-orange: #f8edd0;
+  --color-orange: #faa941;
+  --color-white: #ffffff;
+
+  --font-google: 'Google Sans Flex', sans-serif;
+  --font-lilita: 'Lilita One', cursive;
+}
+
+@utility button {
+  @apply inline-block w-fit bg-orange text-black font-bold
+    text-sm px-6 py-2.5 rounded-full cursor-pointer hover:brightness-110 transition
+    focus:outline-none focus-visible:ring-2 focus-visible:ring-orange;
+}
+
+@utility button-black {
+  @apply button bg-black text-orange;
+}
+
+@utility title-badge-sticker {
+  @apply badge-sticker uppercase absolute -top-3
+    left-1/2 transform -translate-x-1/2 -rotate-10;
+}
+
+@utility badge-sticker {
+  @apply inline-block w-fit font-lilita bg-orange text-black font-bold text-base
+    px-2 py-0.5 rounded-md -top-[0.15em] relative z-30;
+}
+
+@utility badge-sticker-black {
+  @apply badge-sticker bg-black text-orange;
+}
+
+@utility separator {
+  @apply flex rounded-full w-full h-px bg-white opacity-10;
+}
+
+@utility separator-black {
+  @apply separator flex bg-black;
+}
+
+@utility gallery-mosaic {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 200px 200px 200px 280px;
+}

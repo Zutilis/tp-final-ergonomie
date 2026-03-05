@@ -1,16 +1,509 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TP Final</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Lilita+One&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loafly — Where Crumbs Become Art</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Lilita+One&display=swap" rel="stylesheet">
+</head>
+
+<body class="bg-light-orange font-google overflow-x-hidden">
+
+  <input type="checkbox" id="nav-toggle" class="peer sr-only" aria-hidden="true">
+
+  <label for="nav-toggle"
+    class="fixed inset-0 z-30 bg-black/50 hidden peer-checked:block md:hidden cursor-default"
+    aria-hidden="true"></label>
+
+  <div id="mobile-menu"
+    class="fixed top-0 right-0 h-full w-64 bg-black z-40
+           translate-x-full peer-checked:translate-x-0
+           transition-transform duration-300 ease-in-out
+           flex flex-col pt-20 px-8 gap-6 z-50
+           md:hidden"
+    role="dialog" aria-label="Menu navigation mobile">
+
+    <label for="nav-toggle"
+      class="absolute top-5 right-5 text-white text-2xl cursor-pointer
+             focus-within:ring-2 focus-within:ring-orange rounded-full p-1"
+      aria-label="Fermer le menu">✕</label>
+
+    <nav aria-label="Navigation mobile">
+      <ul class="flex flex-col gap-5 list-none">
+        <li><a href="#" onclick="document.getElementById('nav-toggle').checked=false"
+          class="text-orange font-bold text-lg" aria-current="page">Home</a></li>
+        <li><a href="#categories" onclick="document.getElementById('nav-toggle').checked=false"
+          class="text-white font-bold text-lg hover:text-orange transition-colors">Category</a></li>
+        <li><a href="#" onclick="document.getElementById('nav-toggle').checked=false"
+          class="text-white font-bold text-lg hover:text-orange transition-colors">Shop</a></li>
+        <li><a href="#booking" onclick="document.getElementById('nav-toggle').checked=false"
+          class="text-white font-bold text-lg hover:text-orange transition-colors">Contact</a></li>
+        <li><a href="#team" onclick="document.getElementById('nav-toggle').checked=false"
+          class="text-white font-bold text-lg hover:text-orange transition-colors">Bakers</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <header class="fixed flex items-center justify-center top-0 left-0 w-full z-40 px-5 py-4 md:px-10">
+    <nav class="flex items-center w-full md:w-fit justify-between sm:gap-5" aria-label="Navigation principale">
+      <a href="#"
+        class="flex items-center gap-1 bg-black text-white px-3 py-1.5 sm:px-4 sm:py-2
+               rounded-full font-lilita text-xl sm:text-2xl tracking-wide"
+        aria-label="Loafly — Retour à l'accueil">
+        <span class="text-orange" aria-hidden="true">‹</span>Loafly<span class="text-orange" aria-hidden="true">›</span>
+      </a>
+
+      <ul class="hidden md:flex items-center rounded-full bg-light-orange text-black font-bold px-6 py-3 gap-5 list-none" role="list">
+        <li><a href="#" class="text-sm text-orange" aria-current="page">Home</a></li>
+        <li><a href="#categories" class="text-sm hover:text-brown transition-colors">Category</a></li>
+        <li><a href="#" class="text-sm hover:text-brown transition-colors">Shop</a></li>
+        <li><a href="#booking" class="text-sm hover:text-brown transition-colors">Contact</a></li>
+        <li><a href="#team" class="text-sm hover:text-brown transition-colors">Bakers</a></li>
+      </ul>
+
+      <div class="flex flex-row gap-4">
+        <button
+          class="relative bg-orange text-black p-2.5 sm:p-3 rounded-full
+                 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+          aria-label="Panier, 0 article">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span class="absolute top-0 right-0 bg-black text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold" aria-hidden="true">0</span>
+        </button>
+
+        <label for="nav-toggle"
+          class="md:hidden flex flex-col justify-center gap-1.5 w-10 h-10
+                 bg-black rounded-full items-center cursor-pointer
+                 focus-within:ring-2 focus-within:ring-orange"
+          aria-label="Ouvrir le menu">
+          <span class="block w-5 h-0.5 bg-white rounded-full transition-all peer-checked:rotate-45"></span>
+          <span class="block w-5 h-0.5 bg-white rounded-full"></span>
+          <span class="block w-5 h-0.5 bg-white rounded-full"></span>
+        </label>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="hero" aria-labelledby="hero-title"
+      class="bg-black h-screen px-6 pt-10 flex flex-col items-center justify-center text-center gap-5">
+      <h1 id="hero-title"
+        class="font-lilita text-white uppercase leading-none
+               text-5xl sm:text-6xl md:text-8xl lg:text-9xl max-w-4xl">
+        Where crumbs become art
+      </h1>
+      <a href="#categories" class="button">Explore Our Items</a>
+    </section>
+
+    <section id="categories" aria-labelledby="categories-title"
+      class="flex flex-col gap-6 bg-light-orange max-w-5xl mx-auto py-12 md:py-16 px-6 md:px-20">
+      <div class="text-center mb-8 md:mb-16 relative">
+        <span class="title-badge-sticker">Category</span>
+        <h2 id="categories-title"
+          class="font-lilita text-black uppercase leading-none
+                 text-3xl sm:text-4xl md:text-6xl">
+          Fresh picks<br>of the season
+        </h2>
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-4 w-full">
+        <button
+          class="shrink-0 text-black border border-black w-9 h-9 sm:w-10 sm:h-10 rounded-full
+                 flex items-center justify-center text-xl font-bold
+                 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
+          aria-label="Catégorie précédente">‹</button>
+
+        <div class="flex flex-1 gap-4 sm:gap-8 md:gap-12
+                    justify-start md:justify-center
+                    overflow-x-auto
+                    pb-2 md:pb-0"
+             role="tablist" aria-label="Catégories de produits">
+
+          <div class="snap-start shrink-0 flex flex-col items-center" role="tab" aria-selected="true">
+            <img src="breads.png" alt="" aria-hidden="true" class="w-16 h-16 sm:w-20 sm:h-20 object-contain -mb-6 z-10 relative">
+            <div class="badge-sticker z-20 text-sm sm:text-base px-3 sm:px-4">Breads</div>
+          </div>
+
+          <div class="snap-start shrink-0 flex flex-col items-center" role="tab" aria-selected="false">
+            <img src="pastries.webp" alt="" aria-hidden="true" class="w-16 h-16 sm:w-20 sm:h-20 object-contain -mb-6 z-10 relative">
+            <div class="badge-sticker-black z-20 text-sm sm:text-base px-3 sm:px-4">Pastries</div>
+          </div>
+
+          <div class="snap-start shrink-0 flex flex-col items-center" role="tab" aria-selected="false">
+            <img src="cakes.png" alt="" aria-hidden="true" class="w-16 h-16 sm:w-20 sm:h-20 object-contain -mb-6 z-10 relative">
+            <div class="badge-sticker-black z-20 text-sm sm:text-base px-3 sm:px-4">Cakes</div>
+          </div>
+
+          <div class="snap-start shrink-0 flex flex-col items-center" role="tab" aria-selected="false">
+            <img src="cookies.png" alt="" aria-hidden="true" class="w-16 h-16 sm:w-20 sm:h-20 object-contain -mb-6 z-10 relative">
+            <div class="badge-sticker-black z-20 text-sm sm:text-base px-3 sm:px-4">Cookies</div>
+          </div>
+        </div>
+
+        <button
+          class="shrink-0 text-black border border-black w-9 h-9 sm:w-10 sm:h-10 rounded-full
+                 flex items-center justify-center text-xl font-bold
+                 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
+          aria-label="Catégorie suivante">›</button>
+      </div>
+
+      <span class="separator-black"></span>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <article class="bg-brown rounded-3xl flex flex-col items-center p-6 gap-4 text-center">
+          <img src="sourdough.png" alt="Pain sourdough artisanal à croûte croustillante" class="h-32 object-contain">
+          <div>
+            <h3 class="font-lilita text-white uppercase text-xl">Sourdough</h3>
+            <p class="text-orange mt-1">$24.90</p>
+          </div>
+          <span class="separator"></span>
+          <div class="flex items-center justify-end w-full">
+            <button class="button">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="bg-orange rounded-3xl flex flex-col items-center p-6 gap-4 text-center">
+          <img src="baguette.png" alt="Baguettes tradition fraîches du four" class="h-32 object-contain">
+          <div>
+            <h3 class="font-lilita text-black uppercase text-xl">Baguettes</h3>
+            <p class="text-black mt-1">$29.90</p>
+          </div>
+          <span class="separator"></span>
+          <div class="flex items-center justify-end w-full">
+            <button class="button-black">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="bg-black rounded-3xl flex flex-col items-center p-6 gap-4 text-center">
+          <img src="multigrain.png" alt="Pain multigrain aux céréales complètes" class="h-32 object-contain">
+          <div>
+            <h3 class="font-lilita text-white uppercase text-xl">Multigrain</h3>
+            <p class="text-orange mt-1">$19.90</p>
+          </div>
+          <span class="separator"></span>
+          <div class="flex items-center justify-end w-full">
+            <button class="button">Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonials" aria-labelledby="testimonials-title"
+      class="bg-light-orange max-w-5xl mx-auto py-12 md:py-16 px-6 md:px-20">
+      <div class="text-center mb-10 relative">
+        <span class="title-badge-sticker">Testimonial</span>
+        <h2 id="testimonials-title"
+          class="font-lilita text-black uppercase leading-none
+                 text-3xl sm:text-4xl md:text-6xl">
+          Loved by<br>our community
+        </h2>
+      </div>
+      <div class="w-full">
+        <div class="bg-black rounded-3xl p-6 sm:p-8 md:p-10 flex items-center justify-between gap-3">
+          <button
+            class="shrink-0 text-orange border border-orange w-9 h-9 sm:w-10 sm:h-10 rounded-full
+                   flex items-center justify-center text-xl font-bold
+                   transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
+            aria-label="Témoignage précédent">‹</button>
+          <blockquote class="flex flex-col items-center w-full">
+            <p class="text-orange text-5xl sm:text-6xl font-lilita leading-none" aria-hidden="true">"</p>
+            <p class="text-white text-center text-sm md:text-base leading-relaxed mb-6 w-full sm:w-4/5 md:w-2/3">
+              The sourdough here is irresistible — perfectly crispy on the outside and soft on the inside.
+              It's become a weekend must-have at our home!
+            </p>
+            <footer class="flex flex-col items-center gap-1">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face&q=80"
+                alt="" aria-hidden="true" class="w-10 h-10 rounded-full object-cover">
+              <cite class="text-orange text-sm not-italic block">Eleanor Smith</cite>
+              <p class="text-white/60 text-xs">Owner &amp; Lead Baker at Fresh Co.</p>
+            </footer>
+          </blockquote>
+          <button
+            class="shrink-0 text-orange border border-orange w-9 h-9 sm:w-10 sm:h-10 rounded-full
+                   flex items-center justify-center text-xl font-bold
+                   transition focus:outline-none focus-visible:ring-2 focus-visible:ring-orange"
+            aria-label="Témoignage suivant">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" aria-labelledby="team-title"
+      class="bg-light-orange max-w-5xl mx-auto py-12 md:py-16 px-6 md:px-20">
+      <div class="text-center mb-10 md:mb-12 relative">
+        <span class="title-badge-sticker">Meet us</span>
+        <h2 id="team-title"
+          class="font-lilita text-black uppercase leading-none mt-3
+                 text-3xl sm:text-4xl md:text-6xl">
+          Say hello<br>to our dough pros
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-xs sm:max-w-sm md:max-w-4xl mx-auto">
+        <article class="bg-black border-2 border-black rounded-full flex flex-col items-center
+                        justify-between pt-6 sm:pt-8 md:pt-10 max-h-72 text-center overflow-hidden">
+          <div class="flex flex-col px-2 sm:px-3 gap-0.5">
+            <h3 class="font-lilita text-orange uppercase text-[10px] sm:text-xs md:text-sm">Liam Carter</h3>
+            <p class="text-white text-[10px] sm:text-xs md:text-sm">Head Artisan Baker</p>
+          </div>
+          <img src="chef1.png" alt="Portrait de Liam Carter, boulanger en chef" class="w-4/5 mt-1">
+        </article>
+
+        <article class="bg-black border-2 border-black rounded-full flex flex-col items-center
+                        justify-between pt-6 sm:pt-8 md:pt-10 max-h-72 text-center overflow-hidden">
+          <div class="flex flex-col px-2 sm:px-3 gap-0.5">
+            <h3 class="font-lilita text-orange uppercase text-[10px] sm:text-xs md:text-sm">Amelia Bennett</h3>
+            <p class="text-white text-[10px] sm:text-xs md:text-sm">Pastry Chef</p>
+          </div>
+          <img src="chef2.png" alt="Portrait d'Amelia Bennett, cheffe pâtissière" class="w-4/5 mt-1">
+        </article>
+
+        <article class="bg-black border-2 border-black rounded-full flex flex-col items-center
+                        justify-between pt-6 sm:pt-8 md:pt-10 max-h-72 text-center overflow-hidden">
+          <div class="flex flex-col px-2 sm:px-3 gap-0.5">
+            <h3 class="font-lilita text-orange uppercase text-[10px] sm:text-xs md:text-sm">Ethan Ferguson</h3>
+            <p class="text-white text-[10px] sm:text-xs md:text-sm">Lead Artisan</p>
+          </div>
+          <img src="chef3.png" alt="Portrait d'Ethan Ferguson, artisan principal" class="w-4/5 mt-1">
+        </article>
+
+        <article class="bg-black border-2 border-black rounded-full flex flex-col items-center
+                        justify-between pt-6 sm:pt-8 md:pt-10 max-h-72 text-center overflow-hidden">
+          <div class="flex flex-col px-2 sm:px-3 gap-0.5">
+            <h3 class="font-lilita text-orange uppercase text-[10px] sm:text-xs md:text-sm">Mason Brawer</h3>
+            <p class="text-white text-[10px] sm:text-xs md:text-sm">Bread Specialist</p>
+          </div>
+          <img src="chef4.png" alt="Portrait de Mason Brawer, spécialiste pain" class="w-4/5 mt-1">
+        </article>
+      </div>
+
+      <div class="text-center mt-8">
+        <a href="#" class="font-bold text-brown hover:text-black transition-colors">
+          All Bakers <span aria-hidden="true">›</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="gallery" aria-label="Galerie de nos créations" class="bg-orange py-2 px-2">
+      <div class="grid grid-cols-2 max-w-5xl mx-auto gap-2 grid-flow-dense md:gallery-mosaic">
+        <div class="overflow-hidden rounded-xl h-36 sm:h-40 md:h-auto">
+          <img src="gallery_1.jpeg" alt="Gâteau fraisier" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-xl h-36 sm:h-40 md:h-auto">
+          <img src="gallery_2.jpg" alt="Gâteau nature" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-xl h-36 sm:h-40 md:h-auto">
+          <img src="gallery_3.jpeg" alt="Gâteau au chocolat" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="col-span-2 md:col-span-2 overflow-hidden rounded-xl h-36 sm:h-40 md:h-auto">
+          <img src="gallery_4.jpg" alt="Gâteau nature avec citron" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-xl h-36 sm:h-40 md:row-span-2 md:h-auto">
+          <img src="gallery_5.avif" alt="Croissants" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-xl h-36 sm:h-40 md:h-auto">
+          <img src="gallery_6.jpeg" alt="Pains perdues" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="overflow-hidden rounded-xl h-36 sm:h-40 md:h-auto">
+          <img src="gallery_7.jpg" alt="Assortiment de pains" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+        </div>
+        <div class="col-span-2 md:col-span-3 overflow-hidden rounded-xl h-44 sm:h-48 md:h-auto relative">
+          <img src="gallery_8.jpeg" alt="Boulanger artisan pétrissant la pâte dans la boulangerie" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-black/40 rounded-xl" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking" aria-labelledby="booking-title"
+      class="bg-light-orange max-w-5xl mx-auto py-12 md:py-16 px-6 md:px-20">
+      <div class="text-center mb-10 md:mb-12 relative">
+        <span class="title-badge-sticker">Schedule</span>
+        <h2 id="booking-title"
+          class="font-lilita text-black uppercase leading-none mt-3
+                 text-3xl sm:text-4xl md:text-6xl">
+          Time to<br>get your treats!
+        </h2>
+      </div>
+      <div class="flex flex-col md:flex-row gap-6 md:items-stretch">
+        <div class="bg-brown rounded-3xl p-6 sm:p-8 w-full md:w-1/2">
+          <h3 class="font-lilita text-center text-orange uppercase text-2xl md:text-4xl leading-none mb-6">Book your table</h3>
+          <form class="flex flex-col gap-4" aria-label="Formulaire de réservation de table">
+            <div>
+              <label for="booking-name" class="sr-only">Nom complet</label>
+              <input id="booking-name" type="text" placeholder="Full Name" autocomplete="name" required
+                class="w-full bg-white/20 text-white placeholder-white/60 rounded-md px-4 py-3 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-orange">
+            </div>
+            <div>
+              <label for="booking-email" class="sr-only">Adresse e-mail</label>
+              <input id="booking-email" type="email" placeholder="Email Address" autocomplete="email" required
+                class="w-full bg-white/20 text-white placeholder-white/60 rounded-md px-4 py-3 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-orange">
+            </div>
+            <div>
+              <label for="booking-phone" class="sr-only">Numéro de téléphone</label>
+              <input id="booking-phone" type="tel" placeholder="Phone Number" autocomplete="tel"
+                class="w-full bg-white/20 text-white placeholder-white/60 rounded-md px-4 py-3 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-orange">
+            </div>
+            <div class="flex gap-3">
+              <div class="flex-1">
+                <label for="booking-date" class="sr-only">Date de réservation</label>
+                <input id="booking-date" type="date" required
+                  class="w-full bg-white/20 text-white/70 rounded-md px-4 py-3 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-orange">
+              </div>
+              <div class="flex-1">
+                <label for="booking-slot" class="sr-only">Créneau horaire</label>
+                <select id="booking-slot" required
+                  class="w-full bg-white/20 text-white/70 rounded-md px-4 py-3 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-orange">
+                  <option value="" disabled selected>Time Slot</option>
+                  <option value="09:00">09:00 AM</option>
+                  <option value="10:00">10:00 AM</option>
+                  <option value="11:00">11:00 AM</option>
+                  <option value="14:00">02:00 PM</option>
+                  <option value="15:00">03:00 PM</option>
+                  <option value="16:00">04:00 PM</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="button w-full justify-center mt-2">Submit</button>
+          </form>
+        </div>
+        <div class="bg-brown rounded-3xl w-full md:w-1/2 relative overflow-hidden flex flex-col min-h-64 md:min-h-0">
+          <img src="bake-shop.jpg" alt="Devanture de la boulangerie Loafly avec store à rayures" class="w-full h-full object-cover">
+          <div class="absolute bottom-2 left-2 right-2 bg-black rounded-3xl p-5 sm:p-6">
+            <h3 class="font-lilita text-center text-orange uppercase text-xl sm:text-2xl md:text-4xl leading-none mb-4">Opening Hours</h3>
+            <dl class="flex flex-col items-center text-center gap-1">
+              <dt class="font-bold text-orange text-sm">Monday – Friday</dt>
+              <dd class="text-white text-xs">9:00 AM – 9:00 PM</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog" aria-labelledby="blog-title"
+      class="bg-light-orange max-w-5xl mx-auto py-12 md:py-16 px-6 md:px-20">
+      <div class="text-center mb-10 md:mb-12 relative">
+        <span class="title-badge-sticker">Blog</span>
+        <h2 id="blog-title"
+          class="font-lilita text-black uppercase leading-none mt-3
+                 text-3xl sm:text-4xl md:text-6xl">
+          Latest from<br>our kitchen
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+
+        <article class="bg-black border-2 border-brown rounded-3xl relative overflow-hidden flex flex-col
+                        h-64 sm:h-72 md:h-80">
+          <img src="new_breads.webp" alt="Notre sourdough, article sur le sourdough" class="w-full h-full object-cover">
+          <div class="flex flex-col absolute bottom-2 left-2 right-2 gap-2 bg-brown rounded-3xl px-4 sm:px-6 py-3 sm:py-4">
+            <p class="text-white text-xs w-full text-left">5 Expert Tips for Baking the Perfect Sourdough at Home</p>
+            <button class="button self-start">All Bakers <span aria-hidden="true">›</span></button>
+          </div>
+        </article>
+
+        <article class="bg-black border-2 border-brown rounded-3xl relative overflow-hidden flex flex-col
+                        h-64 sm:h-72 md:h-80">
+          <img src="new_croissant.jpg" alt="Notre boulangerie, article sur le croissant" class="w-full h-full object-cover">
+          <div class="flex flex-col absolute bottom-2 left-2 right-2 gap-2 bg-brown rounded-3xl px-4 sm:px-6 py-3 sm:py-4">
+            <p class="text-white text-xs w-full text-left">The Story Behind Our Signature Almond Croissant</p>
+            <button class="button self-start">All Bakers <span aria-hidden="true">›</span></button>
+          </div>
+        </article>
+
+        <article class="bg-black border-2 border-brown rounded-3xl relative overflow-hidden flex flex-col
+                        h-64 sm:h-72 md:h-80
+                        sm:col-span-2 md:col-span-1">
+          <img src="new_berry_tart.jpeg" alt="Nos créations, article sur la collection été" class="w-full h-full object-cover">
+          <div class="flex flex-col absolute bottom-2 left-2 right-2 gap-2 bg-brown rounded-3xl px-4 sm:px-6 py-3 sm:py-4">
+            <p class="text-white text-xs w-full text-left">Summer Flavors Are Here: Try Our Berry Tart Collection</p>
+            <button class="button self-start">All Bakers <span aria-hidden="true">›</span></button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-black" aria-label="Pied de page Loafly">
+
+    <div class="text-center px-6 py-12 md:py-16 md:px-20 border-b border-white/10">
+      <div class="flex flex-col items-center gap-3 mb-2 relative">
+        <h2 class="font-lilita text-orange uppercase text-4xl md:text-6xl leading-tight text-center relative">
+          <span class="badge-sticker absolute bg-white top-1/2 right-[15%] -rotate-10">Tips</span>
+          <span class="badge-sticker absolute bg-white top-0 right-1/2 left-1/2 -translate-x-1/2 -rotate-10">Stories</span>
+          <span class="badge-sticker absolute bg-white top-1/2 right-[75%] -rotate-10">Offers</span>
+          Be the first to<br>know what's baking
+        </h2>
+      </div>
+      <p class="text-white/50 text-xs max-w-sm mx-auto mt-4 mb-8 leading-relaxed">
+        Be the first to hear about fresh bakes, exclusive offers, seasonal specials, behind-the-scenes stories, and so much more
+      </p>
+      <form class="flex gap-3 max-w-sm mx-auto" aria-label="Inscription à la newsletter">
+        <div class="flex-1">
+          <label for="newsletter-email" class="sr-only">Votre adresse e-mail</label>
+          <input id="newsletter-email" type="email" placeholder="Your email address" required
+            class="w-full bg-white/20 text-white placeholder-white/60 rounded-full px-5 py-3 text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-orange">
+        </div>
+        <button type="submit" class="button shrink-0">Subscribe</button>
+      </form>
+    </div>
+
+    <div class="px-6 py-10 md:py-12 md:px-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div>
+          <a href="#" class="inline-flex items-center gap-1 font-lilita text-white text-xl mb-4 block" aria-label="Loafly — Retour à l'accueil">
+            <span class="text-orange" aria-hidden="true">‹</span>Loafly<span class="text-orange" aria-hidden="true">›</span>
+          </a>
+          <address class="not-italic text-white/50 text-xs space-y-1 leading-relaxed">
+            <p>184 Willow Lane</p>
+            <p>Rosewood, CA 90214, US</p>
+            <p class="pt-2">+0 011 222 333 4444</p>
+          </address>
+        </div>
+        <nav aria-label="Pages principales">
+          <h3 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Main Page</h3>
+          <ul class="space-y-2 list-none">
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">Home</a></li>
+            <li><a href="#categories" class="text-white/50 text-xs hover:text-orange transition-colors">Category</a></li>
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">Shop</a></li>
+            <li><a href="#booking" class="text-white/50 text-xs hover:text-orange transition-colors">Contact</a></li>
+            <li><a href="#team" class="text-white/50 text-xs hover:text-orange transition-colors">Bakers</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Autres pages">
+          <h3 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Other Pages</h3>
+          <ul class="space-y-2 list-none">
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">FAQ</a></li>
+            <li><a href="#blog" class="text-white/50 text-xs hover:text-orange transition-colors">Blog</a></li>
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">Code of Conduct</a></li>
+            <li><a href="#booking" class="text-white/50 text-xs hover:text-orange transition-colors">Contact</a></li>
+            <li><a href="#team" class="text-white/50 text-xs hover:text-orange transition-colors">Bakers</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Pages utilitaires">
+          <h3 class="font-bold text-white text-xs uppercase tracking-widest mb-4">Utility Pages</h3>
+          <ul class="space-y-2 list-none">
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">License</a></li>
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">Style Guide</a></li>
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">Passwords</a></li>
+            <li><a href="#" class="text-white/50 text-xs hover:text-orange transition-colors">404 Error</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="mt-10 sm:mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-2 text-white/30 text-xs">
+        <p>Designed by Flowax</p>
+        <p>Copyright ©Loafly. All rights reserved</p>
+        <p>Powered by Webflow</p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
